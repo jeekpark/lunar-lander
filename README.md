@@ -1,6 +1,5 @@
-# lunar-lander
-`lunar-lander` is a multi-platform 2D Lunar Lander game developed using `C++`, `SFML` and `Lua`. Players are tasked with safely landing a spacecraft on the moon's surface. The game offers physics-based challenges and a 
-graphically appealing 2D environment.
+# 🚀🌗 lunar-lander
+`lunar-lander` is a multi-platform 2D Lunar Lander game developed using `C++`, `SFML` and `Lua`. Players are tasked with safely landing a spacecraft on the moon's surface. The game offers physics-based challenges and a graphically appealing 2D environment.
 
 ## Features:
 - Multi-platform support: Playable on Windows, macOS, and Linux

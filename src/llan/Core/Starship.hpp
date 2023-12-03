@@ -1,5 +1,5 @@
 /**
- * @file Core.hpp
+ * @file Starship.hpp
  * @author Jeekun Park (jeekunp@naver.com)
  * @brief 
  * @version 0.1
@@ -15,15 +15,16 @@
 
 namespace Llan
 {
-  class Core
+  class Starship
   {
   public:
-    Core();
-    ~Core();
-    void run();
-    void close();
+    Starship();
+    ~Starship();
+
+    void update();
   private:
-    sf::RenderWindow mWindow;
-    std::string mWindowTitle;
+    Vec2 mPosition;
+    Vec2 mVelocity;
+    Vec2 mDirection;
   };
 }

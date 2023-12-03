@@ -14,9 +14,12 @@
 namespace Llan
 {
   Starship::Starship()
+  : m_cLunarAccelerationByTimeStep(LUNAR_GRAVITY_ACCELERATION / FRAME_PER_SECOND)
+  , m_cThrustAccelerationByTimeStep(LUNAL_MODULE_THRUST_ACCELERATION / FRAME_PER_SECOND)
+  , m_cGravityDirection(Vec2(0.f, 1.f))
   {
     mPosition = Vec2(WINDOW_X / 2.f, WINDOW_Y / 2.f);
-    mDirection = Vec2(-1.f, 0.f);
+    mDirection = Vec2(0.f, -1.f);
     mVelocity = Vec2(0.f, 0.f);
   }
 
@@ -25,5 +28,27 @@ namespace Llan
 
   }
 
-  
+  void Starship::update(bool isCenterThrust, bool isLeftThrust, bool isRightThrust)
+  {
+    
+    mVelocity = mVelocity + m_cGravityDirection * m_cLunarAccelerationByTimeStep;
+    if (isLeftThrust && !isRightThrust)
+      mDirection = mDirection.rotate(0.05f);
+    else if (isRightThrust && !isLeftThrust)
+      mDirection = mDirection.rotate(-0.05f);
+    if (isCenterThrust)
+      mVelocity = mVelocity + mDirection * m_cThrustAccelerationByTimeStep;
+    Vec2 deltaDistance = mVelocity * TIME_STEP_S;
+    mPosition = mPosition + deltaDistance;
+  }
+
+  Vec2 Starship::getPosition() const
+  {
+    return mPosition;
+  }
+
+  Vec2 Starship::getDirection() const
+  {
+    return mDirection;
+  }
 }

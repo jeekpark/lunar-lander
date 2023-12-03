@@ -13,6 +13,9 @@
 
 #include "llan/common.hpp"
 
+#include "llan/Core/EventManager.hpp"
+#include "llan/Core/Starship.hpp"
+
 namespace Llan
 {
   class Core
@@ -25,5 +28,9 @@ namespace Llan
   private:
     sf::RenderWindow mWindow;
     std::string mWindowTitle;
+    EventManager mEventManager;
+    Starship mStarship;
+  private:
+    float pCalculateAngle(Vec2 souce, Vec2 target);
   };
 }

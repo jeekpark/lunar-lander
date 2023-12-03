@@ -34,6 +34,24 @@
 #define TIME_STEP_S         0.016667f
 #define MAIN_FONT_PATH      "resources/Minecraft.ttf"
 
-#define LUNAR_GRAVITY_ACCELERATION  1.625f // 1.625m/s^2
-#define LUNAR_MODULE_WEIGHT         15188.f // 15188kg
 
+/**
+ * @brief The gravity acceleration of Moon
+ * @note 1.625m/s^2
+ */
+#define LUNAR_GRAVITY_ACCELERATION  1.625f
+
+/**
+ * @brief Weight of Appolo-13 lunar module
+ * @note 15188kg
+ */
+#define LUNAR_MODULE_WEIGHT_KG      15188.f
+
+/**
+ * @brief Height of Appolo-13 lunar module.
+ * @note 4.2m
+ */
+#define LUNAR_MODULE_HEIGHT_M       4.2f
+
+
+#define LUNAL_MODULE_THRUST_ACCELERATION    2.214f

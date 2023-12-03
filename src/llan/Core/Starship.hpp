@@ -21,10 +21,17 @@ namespace Llan
     Starship();
     ~Starship();
 
-    void update();
+    void update(bool isCenterThrust, bool isLeftThrust, bool isRightThrust);
+
+    Vec2 getPosition() const;
+    Vec2 getDirection() const;
   private:
+    const float m_cLunarAccelerationByTimeStep;
+    const float m_cThrustAccelerationByTimeStep;
+    const Vec2 m_cGravityDirection;
     Vec2 mPosition;
     Vec2 mVelocity;
     Vec2 mDirection;
+    
   };
 }

@@ -28,6 +28,10 @@ namespace Llan
   {
     while (window.pollEvent(mEvent))
     {
+      if (mEvent.type == sf::Event::Closed)
+      {
+        window.close();
+      }
       if (mEvent.type == sf::Event::KeyPressed)
       {
         mKeyMap[mEvent.key.code] = true;

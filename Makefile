@@ -7,7 +7,7 @@ CXXFLAGS    = -Wall -Wextra -Werror -I./lib/sfml/2.6.1/include -I./src -std=c++1
 LDFLAGS     = -L./lib/sfml/2.6.1/lib -lsfml-window -lsfml-graphics -lsfml-system -Wl,-rpath,./lib/sfml/2.6.1/lib
 
 SRC_DIR     = ./src
-LLAN_DIR		=	$(SRC_DIR)/ssim
+LLAN_DIR		=	$(SRC_DIR)/llan
 CORE_DIR		=	$(LLAN_DIR)/Core
 
 
@@ -16,7 +16,9 @@ OBJ_DIR			=	./obj
 CLANGD_GEN  = ./clangd_gen.sh
 
 SRC_FILES		=	$(SRC_DIR)/main.cpp           				\
-							$(CORE_DIR)/Core.cpp									
+							$(CORE_DIR)/Core.cpp									\
+							$(CORE_DIR)/EventManager.cpp					\
+							$(CORE_DIR)/Starship.cpp
 
 
 OBJ_FILES   = $(SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

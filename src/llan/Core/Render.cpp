@@ -18,8 +18,10 @@ namespace Llan
   {
     mRenderHeight = 100.f;
     mRenderWidth = mRenderHeight / 9.f * 16.f;
-    mRenderX = 500.f;
-    mRenderY = 1000.f;
+    mRenderX = 2000.f;
+    mRenderY = 1010.f;
+    mScale = pMap(mRenderX - (mRenderWidth / 2) + 1.f, mRenderX - (mRenderWidth / 2), mRenderX + (mRenderWidth / 2), 0, WINDOW_X);
+    std::cout << mScale << std::endl;
   }
 
   Render::~Render()
@@ -35,16 +37,35 @@ namespace Llan
 
   void Render::render(const Terrain& terrain, sf::RenderWindow& window)
   {
-    for (int i = mRenderX - (mRenderWidth / 2); i < mRenderX + (mRenderWidth / 2) - 1; ++i)
+    float startXFloat = mRenderX - (mRenderWidth / 2);
+    int startXInt = static_cast<int>(startXFloat);
+  
+    float endXFloat = mRenderX + (mRenderWidth / 2);
+    int endXInt = static_cast<int>(endXFloat) + 1;
+
+    for (int i = startXInt; i < endXInt; ++i)
     {
       float heightFirst = terrain.getTerrainHeight(i);
       float heightSecond = terrain.getTerrainHeight(i + 1);
       sf::Vertex line[] =
       {
-        sf::Vertex(sf::Vector2f(i / mRenderWidth*WINDOW_X, heightFirst / mRenderHeight*WINDOW_Y)),
-        sf::Vertex(sf::Vector2f((i + 1) / mRenderWidth*WINDOW_X, heightSecond / mRenderHeight*WINDOW_Y))
+        sf::Vertex(sf::Vector2f(pMap(i, startXFloat, endXFloat, 0, WINDOW_X),
+          pMap(heightFirst, mRenderY - (mRenderHeight / 2), mRenderY + (mRenderHeight / 2), 0, WINDOW_Y))),
+        sf::Vertex(sf::Vector2f(pMap(i + 1, startXFloat, endXFloat, 0, WINDOW_X),
+          pMap(heightSecond, mRenderY - (mRenderHeight / 2), mRenderY + (mRenderHeight / 2), 0, WINDOW_Y)))
       };
       window.draw(line, 2, sf::Lines);
     }
+  }
+
+  float Render::getScale() const
+  {
+    return mScale;
+  }
+
+  float Render::pMap(float value, float inMin, float inMax, float outMin, float outMax) const
+  {
+    float scale = (outMax- outMin) / (inMax - inMin);
+    return outMin + (value - inMin) * scale;
   }
 }

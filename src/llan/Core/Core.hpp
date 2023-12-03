@@ -15,6 +15,8 @@
 
 #include "llan/Core/EventManager.hpp"
 #include "llan/Core/Starship.hpp"
+#include "llan/Core/Terrain.hpp"
+#include "llan/Core/Render.hpp"
 
 namespace Llan
 {
@@ -30,6 +32,8 @@ namespace Llan
     std::string mWindowTitle;
     EventManager mEventManager;
     Starship mStarship;
+    Terrain mTerrain;
+    Render mRender;
   private:
     float pCalculateAngle(Vec2 souce, Vec2 target);
   };

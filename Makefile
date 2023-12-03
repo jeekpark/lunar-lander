@@ -18,7 +18,9 @@ CLANGD_GEN  = ./clangd_gen.sh
 SRC_FILES		=	$(SRC_DIR)/main.cpp           				\
 							$(CORE_DIR)/Core.cpp									\
 							$(CORE_DIR)/EventManager.cpp					\
-							$(CORE_DIR)/Starship.cpp
+							$(CORE_DIR)/Starship.cpp							\
+							$(CORE_DIR)/Terrain.cpp								\
+							$(CORE_DIR)/Render.cpp					
 
 
 OBJ_FILES   = $(SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

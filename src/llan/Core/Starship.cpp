@@ -18,9 +18,9 @@ namespace Llan
   , m_cThrustAccelerationByTimeStep(LUNAL_MODULE_THRUST_ACCELERATION / FRAME_PER_SECOND)
   , m_cGravityDirection(Vec2(0.f, 1.f))
   {
-    mPosition = Vec2(WINDOW_X / 2.f, WINDOW_Y / 2.f);
-    mDirection = Vec2(0.f, -1.f);
-    mVelocity = Vec2(0.f, 0.f);
+    mPosition = Vec2(2000.f, 950.f);
+    mDirection = Vec2(1.f, 0.f);
+    mVelocity = Vec2(30.f, 0.f);
   }
 
   Starship::~Starship()

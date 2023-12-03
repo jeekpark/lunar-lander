@@ -33,6 +33,7 @@ namespace Llan
   {
     while (mWindow.isOpen())
     {
+      mWindow.clear();
       mEventManager.handleEventQueue(mWindow);
       mStarship.update
       (
@@ -40,29 +41,40 @@ namespace Llan
         mEventManager.isKeyPressed(sf::Keyboard::D),
         mEventManager.isKeyPressed(sf::Keyboard::A)
       );
+      mStarship.update
+      (
+        mEventManager.isKeyPressed(sf::Keyboard::W),
+        mEventManager.isKeyPressed(sf::Keyboard::D),
+        mEventManager.isKeyPressed(sf::Keyboard::A)
+      );
       Vec2 pos = mStarship.getPosition();
-      mWindow.clear();
-      sf::RectangleShape a(sf::Vector2f(3, 3));
-      sf::Texture t;
+      
+ 
+      sf::Texture t, fire;
       t.loadFromFile("./resources/Starship.png");
+      fire.loadFromFile("./resources/MainThrust.png");
       t.setSmooth(true);
-      sf::Sprite sprite;
+      fire.setSmooth(true);
+      sf::Sprite sprite, spriteThrust;
       sprite.setTexture(t);
-      sprite.setOrigin(16,16);
-      sprite.setPosition(pos.getX(), pos.getY());
+      spriteThrust.setTexture(fire);
+      sprite.setScale(mRender.getScale() / 32 * LUNAR_MODULE_HEIGHT_M, mRender.getScale() / 32 * LUNAR_MODULE_HEIGHT_M);
+      spriteThrust.setScale(mRender.getScale() / 32 * LUNAR_MODULE_HEIGHT_M, mRender.getScale() / 32 * LUNAR_MODULE_HEIGHT_M);
+      sprite.setOrigin(mRender.getScale() * LUNAR_MODULE_HEIGHT_M / 2, mRender.getScale() * LUNAR_MODULE_HEIGHT_M / 2);
+      spriteThrust.setOrigin(mRender.getScale() * LUNAR_MODULE_HEIGHT_M / 2, mRender.getScale() * LUNAR_MODULE_HEIGHT_M / 2);
+      sprite.setPosition(WINDOW_X / 2.f, WINDOW_Y / 2.f);
+      spriteThrust.setPosition(WINDOW_X / 2.f, WINDOW_Y / 2.f);
       
       Vec2 dir = mStarship.getDirection();
       sprite.setRotation(pCalculateAngle(Vec2(0, 0), dir) + 90);
+      spriteThrust.setRotation(pCalculateAngle(Vec2(0, 0), dir) + 90);
       
-      sf::RectangleShape fire(sf::Vector2f(3, 10));
-      a.setFillColor(sf::Color::White);
-      a.setPosition(sf::Vector2f(pos.getX(), pos.getY()));
-      fire.setFillColor(sf::Color::Red);
-      fire.setPosition(sf::Vector2f(pos.getX(), pos.getY() + 3));
-      //mWindow.draw(a);
+      mRender.setRenderPosition(pos.getX(), pos.getY());
       mWindow.draw(sprite);
       if (mEventManager.isKeyPressed(sf::Keyboard::W))
-        mWindow.draw(fire);
+        mWindow.draw(spriteThrust);
+      mRender.render(mTerrain, mWindow);
+      
       mWindow.display();
     }
   }

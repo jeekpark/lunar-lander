@@ -26,11 +26,14 @@ namespace Llan
 
     void setRenderPosition(float renderX, float renderY);
     void render(const Terrain& terrain, sf::RenderWindow& window);
+    float getScale() const;
   private:
     float mRenderWidth;
     float mRenderHeight;
     float mRenderX;
     float mRenderY;
-
+    float mScale;
+  private:
+    float pMap(float value, float inMin, float inMax, float outMin, float outMax) const;
   };
 }

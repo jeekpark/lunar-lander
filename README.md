@@ -18,8 +18,8 @@ bash -c "$(curl -fsSL https://raw.github.com/jeekpark/lunar-lander/main/install.
 ## Execute:
 Run the command below.
 ```
-cd ./lunar-simaulator
+cd ./lunar-lander
 ```
 ```
-./lunar-simulator
+./lunar-lander
 ```

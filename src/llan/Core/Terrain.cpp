@@ -16,15 +16,15 @@ namespace Llan
 {
   Terrain::Terrain()
   {
-    mTerrainHeights = std::vector<float>(10000);
+    mTerrainHeights = std::vector<float>(100000);
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> dis(1000.f, 1003.f);
+    std::uniform_real_distribution<float> dis(1000.f, 1001.5f);
 
-    for (int i = 0; i < 10000; ++i)
+    for (int i = 0; i < 100000; ++i)
     {
       float randomHeight = dis(gen);
-      if (i > 10 && rand() % 2 == 0)
+      if (i > 10 && rand() % 5 == 0)
       {
         mTerrainHeights[i - 1] = randomHeight;
         mTerrainHeights[i - 2] = randomHeight;
@@ -35,7 +35,7 @@ namespace Llan
       }
       mTerrainHeights[i] = randomHeight;
     }
-    mTerrainWidth = 10000;
+    mTerrainWidth = 100000;
   }
 
   Terrain::~Terrain()

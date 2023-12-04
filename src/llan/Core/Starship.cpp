@@ -19,9 +19,9 @@ namespace Llan
   , m_cThrustAccelerationByTimeStep(LUNAL_MODULE_THRUST_ACCELERATION / FRAME_PER_SECOND)
   , m_cGravityDirection(Vec2(0.f, 1.f))
   {
-    mPosition = Vec2(2000.f, 950.f);
+    mPosition = Vec2(2000.f, 980.f);
     mDirection = Vec2(1.f, 0.f);
-    mVelocity = Vec2(300.f, 0.f);
+    mVelocity = Vec2(80.f, 0.f);
     mThrustLevel = 0;
   }
 
@@ -32,7 +32,15 @@ namespace Llan
 
   void Starship::update(bool isCenterThrust, bool isLeftThrust, bool isRightThrust)
   {
-    if (isCenterThrust && mThrustLevel < 27) mThrustLevel++;
+    if (mPosition.getY() > 999.5f)
+    {
+      mDirection = Vec2(0.f, -1.f);
+      mVelocity = Vec2(0.f, 0.f);
+      mPosition = Vec2(mPosition.getX(), 999.5f);
+      mThrustLevel = 0;
+      return;
+    }
+    if (isCenterThrust && mThrustLevel < 9) mThrustLevel++;
     else if (!isCenterThrust && mThrustLevel > 0) mThrustLevel--;
 
     mVelocity = mVelocity + m_cGravityDirection * m_cLunarAccelerationByTimeStep;

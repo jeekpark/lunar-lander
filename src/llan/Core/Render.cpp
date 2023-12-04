@@ -10,8 +10,11 @@
  */
 
 #include "llan/Core/Render.hpp"
+#include "SFML/Graphics/Color.hpp"
+#include "SFML/Graphics/PrimitiveType.hpp"
 #include "SFML/Graphics/Rect.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/Graphics/Vertex.hpp"
 #include "SFML/System/Clock.hpp"
 #include "llan/Core/Starship.hpp"
 #include "llan/common.hpp"
@@ -21,12 +24,11 @@ namespace Llan
 {
   Render::Render()
   {
-    mRenderTerrainHeight = 100.f;
+    mRenderTerrainHeight = 1000.f;
     mRenderTerrainWidth = mRenderTerrainHeight / 9.f * 16.f;
     mRenderTerrainX = 2000.f;
     mRenderTerrainY = 1010.f;
     mTerrainScale = pMap(mRenderTerrainX - (mRenderTerrainWidth / 2) + 1.f, mRenderTerrainX - (mRenderTerrainWidth / 2), mRenderTerrainX + (mRenderTerrainWidth / 2), 0, WINDOW_X);
-    std::cout << mTerrainScale << std::endl;
 
     mStarshipRectSize = 128;
     mStarshipSpriteTexture.loadFromFile(STARSHIP_SPRITE_PATH);
@@ -51,12 +53,14 @@ namespace Llan
   {
     mRenderTerrainWidth = renderWidth;
     mRenderTerrainHeight = mRenderTerrainWidth / 16.f * 9.f;
+    mTerrainScale = pMap(mRenderTerrainX - (mRenderTerrainWidth / 2) + 1.f, mRenderTerrainX - (mRenderTerrainWidth / 2), mRenderTerrainX + (mRenderTerrainWidth / 2), 0, WINDOW_X);
   }
 
   void Render::setRenderTerrainHeight(float renderHeight)
   {
     mRenderTerrainHeight = renderHeight;
     mRenderTerrainWidth = mRenderTerrainHeight / 9.f * 16.f;
+    mTerrainScale = pMap(mRenderTerrainX - (mRenderTerrainWidth / 2) + 1.f, mRenderTerrainX - (mRenderTerrainWidth / 2), mRenderTerrainX + (mRenderTerrainWidth / 2), 0, WINDOW_X);
   }
 
   void Render::renderTerrain(const Terrain& terrain, sf::RenderWindow& window)
@@ -79,6 +83,18 @@ namespace Llan
           pMap(heightSecond, mRenderTerrainY - (mRenderTerrainHeight / 2), mRenderTerrainY + (mRenderTerrainHeight / 2), 0, WINDOW_Y)))
       };
       window.draw(line, 2, sf::Lines);
+      if (i % 50 == 0)
+      {sf::Vertex lineVertical[] =
+      {
+        sf::Vertex(sf::Vector2f(pMap(i + 1, startXFloat, endXFloat, 0, WINDOW_X),
+          0)),
+        sf::Vertex(sf::Vector2f(pMap(i + 1, startXFloat, endXFloat, 0, WINDOW_X),
+          pMap(heightSecond, mRenderTerrainY - (mRenderTerrainHeight / 2), mRenderTerrainY + (mRenderTerrainHeight / 2), 0, WINDOW_Y)))
+      };
+
+      lineVertical[0].color = sf::Color(50, 50, 50, 255);
+      lineVertical[1].color = sf::Color(50, 50, 50, 255);
+      window.draw(lineVertical, 2, sf::Lines);}
     }
   }
 
@@ -90,14 +106,15 @@ namespace Llan
 
   void Render::renderStarship(const Starship& starship, sf::RenderWindow& window)
   {    
-    int thrustLevel = starship.getThrustLevel() / 3; // -> 0~9
-
+    int thrustLevel = starship.getThrustLevel() / 1; // -> 0~9
+    if (thrustLevel == 9)
+    {
+      thrustLevel -= (rand() % 8);
+    }
     mFrameRect.left = thrustLevel * 128;
     mStarshipSprite.setTextureRect(mFrameRect);
-    mStarshipSprite.setOrigin(thrustLevel * 128 + 64, 16);
+    mStarshipSprite.setOrigin(64, 16);
     mStarshipSprite.setScale(mTerrainScale / 32 * LUNAR_MODULE_HEIGHT_M, mTerrainScale / 32 * LUNAR_MODULE_HEIGHT_M);
-    
-    
     mStarshipSprite.setRotation(pCalculateAngle(Vec2(0, 0), starship.getDirection()) + 90);
     mStarshipSprite.setPosition(WINDOW_X / 2.f, WINDOW_Y / 2.f);
     window.draw(mStarshipSprite);

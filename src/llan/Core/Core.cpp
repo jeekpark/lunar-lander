@@ -10,6 +10,8 @@
  */
 
 #include "llan/Core/Core.hpp"
+#include "SFML/Graphics/Sprite.hpp"
+#include "SFML/Graphics/Texture.hpp"
 
 namespace Llan
 {
@@ -31,6 +33,10 @@ namespace Llan
 
   void Core::run()
   {
+    sf::Texture a;
+    a.loadFromFile("./resources/background.png");
+    sf::Sprite b;
+    b.setTexture(a);
     while (mWindow.isOpen())
     {
       mWindow.clear();
@@ -42,36 +48,25 @@ namespace Llan
         mEventManager.isKeyPressed(sf::Keyboard::A)
       );
 
-      /* Vec2 pos = mStarship.getPosition();
-      Vec2 dir = mStarship.getDirection();
-      //Vec2 vel = mStarship.getVelocity();
+      float height = (1000 - mStarship.getPosition().getY()) * 2.2f;
 
-      sf::Texture t, fire;
-      t.loadFromFile("./resources/Starship.png");
-      fire.loadFromFile("./resources/MainThrust.png");
-      t.setSmooth(true);
-      fire.setSmooth(true);
-      sf::Sprite sprite, spriteThrust;
-      sprite.setTexture(t);
-      spriteThrust.setTexture(fire);
-      sprite.setScale(mRender.getTerrainScale() / 32 * LUNAR_MODULE_HEIGHT_M, mRender.getTerrainScale() / 32 * LUNAR_MODULE_HEIGHT_M);
-      spriteThrust.setScale(mRender.getTerrainScale() / 32 * LUNAR_MODULE_HEIGHT_M, mRender.getTerrainScale() / 32 * LUNAR_MODULE_HEIGHT_M);
-      sprite.setOrigin(mRender.getTerrainScale() * LUNAR_MODULE_HEIGHT_M / 2, mRender.getTerrainScale() * LUNAR_MODULE_HEIGHT_M / 2);
-      spriteThrust.setOrigin(mRender.getTerrainScale() * LUNAR_MODULE_HEIGHT_M / 2, mRender.getTerrainScale() * LUNAR_MODULE_HEIGHT_M / 2);
-      sprite.setPosition(WINDOW_X / 2.f, WINDOW_Y / 2.f);
-      spriteThrust.setPosition(WINDOW_X / 2.f, WINDOW_Y / 2.f);
-      
- 
-      sprite.setRotation(pCalculateAngle(Vec2(0, 0), dir) + 90);
-      spriteThrust.setRotation(pCalculateAngle(Vec2(0, 0), dir) + 90);
-      
-      mRender.setRenderTerrainPosition(pos.getX(), pos.getY());
-      mWindow.draw(sprite);
-      if (mEventManager.isKeyPressed(sf::Keyboard::W))
-        mWindow.draw(spriteThrust); */
+      if (height < 100.f) height = 100.f;
+      mWindow.draw(b);
+      mRender.setRenderTerrainHeight(height);
       mRender.setRenderTerrainPosition(mStarship.getPosition().getX(), mStarship.getPosition().getY());
       mRender.renderTerrain(mTerrain, mWindow);
       mRender.renderStarship(mStarship, mWindow);
+
+
+      mUI.setFlightAltitude(1001.5f - mStarship.getPosition().getY());
+      mUI.setHorizontalVelocity(mStarship.getVelocity().getX());
+      mUI.setVerticalVelocity(mStarship.getVelocity().getY());
+      mWindow.draw(mUI.getFlightAltitude());
+      mWindow.draw(mUI.getHorizontalVelocity());
+      mWindow.draw(mUI.getVerticalVelocity());
+      
+
+
       mWindow.display();
     }
   }

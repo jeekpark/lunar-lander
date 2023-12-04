@@ -2,13 +2,14 @@ TARGET				=	lunar-lander
 
 
 CXX         = c++
-CXXFLAGS    = -Wall -Wextra -Werror -I./lib/sfml/2.6.1/include -I./src -std=c++11
+CXXFLAGS    = -I./lib/sfml/2.6.1/include -I./src -std=c++11 #-Wall -Wextra -Werror
 
 LDFLAGS     = -L./lib/sfml/2.6.1/lib -lsfml-window -lsfml-graphics -lsfml-system -Wl,-rpath,./lib/sfml/2.6.1/lib
 
 SRC_DIR     = ./src
 LLAN_DIR		=	$(SRC_DIR)/llan
 CORE_DIR		=	$(LLAN_DIR)/Core
+UI_DIR			=	$(LLAN_DIR)/UI
 
 
 OBJ_DIR			=	./obj
@@ -20,7 +21,8 @@ SRC_FILES		=	$(SRC_DIR)/main.cpp           				\
 							$(CORE_DIR)/EventManager.cpp					\
 							$(CORE_DIR)/Starship.cpp							\
 							$(CORE_DIR)/Terrain.cpp								\
-							$(CORE_DIR)/Render.cpp					
+							$(CORE_DIR)/Render.cpp								\
+							$(UI_DIR)/UI.cpp
 
 
 OBJ_FILES   = $(SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

@@ -17,6 +17,7 @@
 #include "llan/Core/Starship.hpp"
 #include "llan/Core/Terrain.hpp"
 #include "llan/Core/Render.hpp"
+#include "llan/UI/UI.hpp"
 
 namespace Llan
 {
@@ -34,6 +35,7 @@ namespace Llan
     Starship mStarship;
     Terrain mTerrain;
     Render mRender;
+    UI mUI;
   private:
     float pCalculateAngle(Vec2 souce, Vec2 target);
   };

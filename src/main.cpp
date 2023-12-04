@@ -11,6 +11,7 @@
 
 
 #include "llan/Llan.hpp"
+#include <cstdlib>
 
 int main(const int, const char**)
 {

@@ -19,9 +19,9 @@ namespace Llan
   , m_cThrustAccelerationByTimeStep(LUNAL_MODULE_THRUST_ACCELERATION / FRAME_PER_SECOND)
   , m_cGravityDirection(Vec2(0.f, 1.f))
   {
-    mPosition = Vec2(2000.f, 980.f);
+    mPosition = Vec2(2000.f, 950.f);
     mDirection = Vec2(1.f, 0.f);
-    mVelocity = Vec2(80.f, 0.f);
+    mVelocity = Vec2(300.f, 0.f);
     mThrustLevel = 0;
   }
 
@@ -49,7 +49,12 @@ namespace Llan
     else if (isRightThrust && !isLeftThrust)
       mDirection = mDirection.rotate(-0.05f);
     if (isCenterThrust)
-      mVelocity = mVelocity + mDirection * m_cThrustAccelerationByTimeStep;
+    {
+      if (mVelocity.length() < 10.f)
+        mVelocity = mVelocity + mDirection * m_cThrustAccelerationByTimeStep / 10;
+      else
+        mVelocity = mVelocity + mDirection * m_cThrustAccelerationByTimeStep;
+    }
     Vec2 deltaDistance = mVelocity * TIME_STEP_S;
     mPosition = mPosition + deltaDistance;
   }

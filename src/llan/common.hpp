@@ -58,7 +58,7 @@
  * @brief Force(newton) of Applo-13 lunar module.
  * @note APS thrust: 3,500 lbf, 15568.7756 newton 
  */
-#define LUNAR_MOUDLE_THRUST_FORCE 	15568.7756f
+#define LUNAR_MOUDLE_THRUST_FORCE 	15568.7756f * 10.f
 
 
 /**

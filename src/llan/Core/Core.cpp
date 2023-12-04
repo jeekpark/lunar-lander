@@ -48,11 +48,8 @@ namespace Llan
         mEventManager.isKeyPressed(sf::Keyboard::A)
       );
 
-      float height = (1000 - mStarship.getPosition().getY()) * 2.2f;
-
-      if (height < 100.f) height = 100.f;
       mWindow.draw(b);
-      mRender.setRenderTerrainHeight(height);
+      mRender.setRenderTerrainHeight(100);
       mRender.setRenderTerrainPosition(mStarship.getPosition().getX(), mStarship.getPosition().getY());
       mRender.renderTerrain(mTerrain, mWindow);
       mRender.renderStarship(mStarship, mWindow);

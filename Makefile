@@ -4,7 +4,7 @@ TARGET				=	lunar-lander
 CXX         = c++
 CXXFLAGS    = -I./lib/sfml/2.6.1/include -I./src -std=c++11 #-Wall -Wextra -Werror
 
-LDFLAGS     = -L./lib/sfml/2.6.1/lib -lsfml-window -lsfml-graphics -lsfml-system -Wl,-rpath,./lib/sfml/2.6.1/lib
+LDFLAGS     = -L./lib/sfml/2.6.1/lib -lsfml-window -lsfml-graphics -lsfml-audio -lsfml-system  -Wl,-rpath,./lib/sfml/2.6.1/lib
 
 SRC_DIR     = ./src
 LLAN_DIR		=	$(SRC_DIR)/llan

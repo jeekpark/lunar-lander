@@ -37,6 +37,13 @@ namespace Llan
     a.loadFromFile("./resources/background.png");
     sf::Sprite b;
     b.setTexture(a);
+
+    sf::SoundBuffer buf;
+    buf.loadFromFile("./resources/rocket-thrust-01.wav");
+
+    sf::Sound sound;
+    sound.setBuffer(buf);
+    bool flag = false;
     while (mWindow.isOpen())
     {
       mWindow.clear();
@@ -47,6 +54,17 @@ namespace Llan
         mEventManager.isKeyPressed(sf::Keyboard::D),
         mEventManager.isKeyPressed(sf::Keyboard::A)
       );
+
+      if (mEventManager.isKeyPressed(sf::Keyboard::W) && flag == false)
+      {
+        sound.play();
+        flag = true;
+      }
+      else if (!mEventManager.isKeyPressed(sf::Keyboard::W) && flag == true)
+      {
+        sound.pause();
+        flag = false;
+      }
 
       mWindow.draw(b);
       mRender.setRenderTerrainHeight(100);

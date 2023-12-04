@@ -17,7 +17,7 @@ sfml_bundle_out=${sfml_bundle%.tar.gz}
 
 tar -xzvf ./lunar-lander/lib/sfml/$sfml_bundle -C ./lunar-lander/lib/sfml
 mv ./lunar-lander/lib/sfml/$sfml_bundle_out ./lunar-lander/lib/sfml/2.6.1
-mv ./lunar-lander/lib/sfml/2.6.1/extlibs/freetype.framework ./lunar-lander/lib/sfml/2.6.1/Frameworks/freetype.framework
+mv ./lunar-lander/lib/sfml/2.6.1/extlibs/* ./lunar-lander/lib/sfml/2.6.1/Frameworks/*
 
 make -C lunar-lander clangd
 make -C lunar-lander all

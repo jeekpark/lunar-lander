@@ -21,7 +21,7 @@ namespace Llan
   {
     mPosition = Vec2(2000.f, 950.f);
     mDirection = Vec2(1.f, 0.f);
-    mVelocity = Vec2(300.f, 0.f);
+    mVelocity = Vec2(400.f, 0.f);
     mThrustLevel = 0;
   }
 

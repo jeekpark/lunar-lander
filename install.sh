@@ -20,6 +20,6 @@ mv ./lunar-lander/lib/sfml/$sfml_bundle_out ./lunar-lander/lib/sfml/2.6.1
 mv ./lunar-lander/lib/sfml/2.6.1/extlibs/freetype.framework ./lunar-lander/lib/sfml/2.6.1/Frameworks/freetype.framework
 
 make -C lunar-lander clangd
-#make -C lunar-lander all
+make -C lunar-lander all
 
 

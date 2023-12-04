@@ -25,6 +25,8 @@ namespace Llan
 
     Vec2 getPosition() const;
     Vec2 getDirection() const;
+    Vec2 getVelocity() const;
+    int getThrustLevel() const;
   private:
     const float m_cLunarAccelerationByTimeStep;
     const float m_cThrustAccelerationByTimeStep;
@@ -32,6 +34,6 @@ namespace Llan
     Vec2 mPosition;
     Vec2 mVelocity;
     Vec2 mDirection;
-    
+    int mThrustLevel;
   };
 }

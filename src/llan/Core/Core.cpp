@@ -41,15 +41,11 @@ namespace Llan
         mEventManager.isKeyPressed(sf::Keyboard::D),
         mEventManager.isKeyPressed(sf::Keyboard::A)
       );
-      mStarship.update
-      (
-        mEventManager.isKeyPressed(sf::Keyboard::W),
-        mEventManager.isKeyPressed(sf::Keyboard::D),
-        mEventManager.isKeyPressed(sf::Keyboard::A)
-      );
-      Vec2 pos = mStarship.getPosition();
-      
- 
+
+      /* Vec2 pos = mStarship.getPosition();
+      Vec2 dir = mStarship.getDirection();
+      //Vec2 vel = mStarship.getVelocity();
+
       sf::Texture t, fire;
       t.loadFromFile("./resources/Starship.png");
       fire.loadFromFile("./resources/MainThrust.png");
@@ -58,23 +54,24 @@ namespace Llan
       sf::Sprite sprite, spriteThrust;
       sprite.setTexture(t);
       spriteThrust.setTexture(fire);
-      sprite.setScale(mRender.getScale() / 32 * LUNAR_MODULE_HEIGHT_M, mRender.getScale() / 32 * LUNAR_MODULE_HEIGHT_M);
-      spriteThrust.setScale(mRender.getScale() / 32 * LUNAR_MODULE_HEIGHT_M, mRender.getScale() / 32 * LUNAR_MODULE_HEIGHT_M);
-      sprite.setOrigin(mRender.getScale() * LUNAR_MODULE_HEIGHT_M / 2, mRender.getScale() * LUNAR_MODULE_HEIGHT_M / 2);
-      spriteThrust.setOrigin(mRender.getScale() * LUNAR_MODULE_HEIGHT_M / 2, mRender.getScale() * LUNAR_MODULE_HEIGHT_M / 2);
+      sprite.setScale(mRender.getTerrainScale() / 32 * LUNAR_MODULE_HEIGHT_M, mRender.getTerrainScale() / 32 * LUNAR_MODULE_HEIGHT_M);
+      spriteThrust.setScale(mRender.getTerrainScale() / 32 * LUNAR_MODULE_HEIGHT_M, mRender.getTerrainScale() / 32 * LUNAR_MODULE_HEIGHT_M);
+      sprite.setOrigin(mRender.getTerrainScale() * LUNAR_MODULE_HEIGHT_M / 2, mRender.getTerrainScale() * LUNAR_MODULE_HEIGHT_M / 2);
+      spriteThrust.setOrigin(mRender.getTerrainScale() * LUNAR_MODULE_HEIGHT_M / 2, mRender.getTerrainScale() * LUNAR_MODULE_HEIGHT_M / 2);
       sprite.setPosition(WINDOW_X / 2.f, WINDOW_Y / 2.f);
       spriteThrust.setPosition(WINDOW_X / 2.f, WINDOW_Y / 2.f);
       
-      Vec2 dir = mStarship.getDirection();
+ 
       sprite.setRotation(pCalculateAngle(Vec2(0, 0), dir) + 90);
       spriteThrust.setRotation(pCalculateAngle(Vec2(0, 0), dir) + 90);
       
-      mRender.setRenderPosition(pos.getX(), pos.getY());
+      mRender.setRenderTerrainPosition(pos.getX(), pos.getY());
       mWindow.draw(sprite);
       if (mEventManager.isKeyPressed(sf::Keyboard::W))
-        mWindow.draw(spriteThrust);
-      mRender.render(mTerrain, mWindow);
-      
+        mWindow.draw(spriteThrust); */
+      mRender.setRenderTerrainPosition(mStarship.getPosition().getX(), mStarship.getPosition().getY());
+      mRender.renderTerrain(mTerrain, mWindow);
+      mRender.renderStarship(mStarship, mWindow);
       mWindow.display();
     }
   }

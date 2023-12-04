@@ -10,6 +10,7 @@
  */
 
 #include "llan/Core/Starship.hpp"
+#include "llan/Helper/Vec2.hpp"
 
 namespace Llan
 {
@@ -20,7 +21,8 @@ namespace Llan
   {
     mPosition = Vec2(2000.f, 950.f);
     mDirection = Vec2(1.f, 0.f);
-    mVelocity = Vec2(30.f, 0.f);
+    mVelocity = Vec2(300.f, 0.f);
+    mThrustLevel = 0;
   }
 
   Starship::~Starship()
@@ -30,7 +32,9 @@ namespace Llan
 
   void Starship::update(bool isCenterThrust, bool isLeftThrust, bool isRightThrust)
   {
-    
+    if (isCenterThrust && mThrustLevel < 27) mThrustLevel++;
+    else if (!isCenterThrust && mThrustLevel > 0) mThrustLevel--;
+
     mVelocity = mVelocity + m_cGravityDirection * m_cLunarAccelerationByTimeStep;
     if (isLeftThrust && !isRightThrust)
       mDirection = mDirection.rotate(0.05f);
@@ -50,5 +54,15 @@ namespace Llan
   Vec2 Starship::getDirection() const
   {
     return mDirection;
+  }
+
+  Vec2 Starship::getVelocity() const
+  {
+    return mVelocity;
+  }
+  
+  int Starship::getThrustLevel() const
+  {
+    return mThrustLevel;
   }
 }

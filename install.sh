@@ -22,7 +22,7 @@ mv ./lunar-lander/lib/sfml/2.6.1/extlibs/freetype.framework ./lunar-lander/lib/s
 mv ./lunar-lander/lib/sfml/2.6.1/extlibs/ogg.framework ./lunar-lander/lib/sfml/2.6.1/Frameworks/ogg.framework
 mv ./lunar-lander/lib/sfml/2.6.1/extlibs/vorbis.framework ./lunar-lander/lib/sfml/2.6.1/Frameworks/vorbis.framework
 mv ./lunar-lander/lib/sfml/2.6.1/extlibs/vorbisenc.framework ./lunar-lander/lib/sfml/2.6.1/Frameworks/vorbisenc.framework
-mv ./lunar-lander/lib/sfml/2.6.1/extlibs/vorbisfile.framework ./lunar-lander/lib/sfml/2.6.1/Frameworks/freetype.framework
+mv ./lunar-lander/lib/sfml/2.6.1/extlibs/vorbisfile.framework ./lunar-lander/lib/sfml/2.6.1/Frameworks/vorbisfile.framework
 
 
 

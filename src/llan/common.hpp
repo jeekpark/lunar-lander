@@ -36,6 +36,8 @@
 #define MAIN_FONT_PATH      	"resources/Minecraft.ttf"
 #define STARSHIP_SPRITE_PATH  "resources/starshipSpriteSheet.png"
 
+#define THRUST_SOUND_PATH			"resources/rocket-thrust-01.wav"
+
 
 /**
  * @brief The gravity acceleration of Moon

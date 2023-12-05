@@ -10,6 +10,7 @@ SRC_DIR     = ./src
 LLAN_DIR		=	$(SRC_DIR)/llan
 CORE_DIR		=	$(LLAN_DIR)/Core
 UI_DIR			=	$(LLAN_DIR)/UI
+SOUND_DIR		=	$(LLAN_DIR)/Sound
 
 
 OBJ_DIR			=	./obj
@@ -22,7 +23,8 @@ SRC_FILES		=	$(SRC_DIR)/main.cpp           				\
 							$(CORE_DIR)/Starship.cpp							\
 							$(CORE_DIR)/Terrain.cpp								\
 							$(CORE_DIR)/Render.cpp								\
-							$(UI_DIR)/UI.cpp
+							$(UI_DIR)/UI.cpp											\
+							$(SOUND_DIR)/Sound.cpp
 
 
 OBJ_FILES   = $(SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

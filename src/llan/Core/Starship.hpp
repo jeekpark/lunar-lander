@@ -13,6 +13,8 @@
 
 #include "llan/common.hpp"
 
+#include "llan/Sound/Sound.hpp"
+
 namespace Llan
 {
   class Starship
@@ -35,5 +37,8 @@ namespace Llan
     Vec2 mVelocity;
     Vec2 mDirection;
     int mThrustLevel;
+    
+    Sound mThrustSound;
+
   };
 }

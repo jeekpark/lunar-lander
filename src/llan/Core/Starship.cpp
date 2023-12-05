@@ -18,6 +18,7 @@ namespace Llan
   : m_cLunarAccelerationByTimeStep(LUNAR_GRAVITY_ACCELERATION / FRAME_PER_SECOND)
   , m_cThrustAccelerationByTimeStep(LUNAL_MODULE_THRUST_ACCELERATION / FRAME_PER_SECOND)
   , m_cGravityDirection(Vec2(0.f, 1.f))
+  , mThrustSound(THRUST_SOUND_PATH)
   {
     mPosition = Vec2(2000.f, 950.f);
     mDirection = Vec2(1.f, 0.f);
@@ -57,6 +58,8 @@ namespace Llan
     }
     Vec2 deltaDistance = mVelocity * TIME_STEP_S;
     mPosition = mPosition + deltaDistance;
+
+    mThrustSound.play(isCenterThrust);
   }
 
   Vec2 Starship::getPosition() const

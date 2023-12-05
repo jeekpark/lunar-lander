@@ -11,7 +11,9 @@
 
 
 
-#include "llan/UI/UI.hpp"
+#include "llan/Render/UI/UI.hpp"
+#include "SFML/Graphics/Color.hpp"
+#include "SFML/Graphics/Text.hpp"
 #include "llan/common.hpp"
 #include <sstream>
 
@@ -24,18 +26,22 @@ namespace Llan
 		mFlightAltitude.setFont(mMainFont);
 		mVerticalVelocity.setFont(mMainFont);
 		mHorizontalVelocity.setFont(mMainFont);
+		mSafetyLanding.setFont(mMainFont);
 
 		mFlightAltitude.setCharacterSize(18);
 		mVerticalVelocity.setCharacterSize(18);
 		mHorizontalVelocity.setCharacterSize(18);
+		mSafetyLanding.setCharacterSize(18);
 
 		mFlightAltitude.setFillColor(sf::Color::White);
 		mVerticalVelocity.setFillColor(sf::Color::White);
 		mHorizontalVelocity.setFillColor(sf::Color::White);
+		mSafetyLanding.setFillColor(sf::Color::White);
 		
 		mFlightAltitude.setPosition(10, 10);
 		mVerticalVelocity.setPosition(10, 10 + 30);
 		mHorizontalVelocity.setPosition(10, 10 + 60);
+		mSafetyLanding.setPosition(10, 10 + 90);
 	}
 
 	UI::~UI()
@@ -53,14 +59,17 @@ namespace Llan
 	void UI::setVerticalVelocity(float verticalVelocity)
 	{
 		std::stringstream ss;
-		ss << "Vertical speed: " << std::fixed << std::setprecision(1) << -verticalVelocity;
+		ss << "Vertical speed: " << std::fixed << std::setprecision(1) << -verticalVelocity
+		<< "m/s (" << -verticalVelocity / 1000.f * 3600.f << "km/h)"; 
 		mVerticalVelocity.setString(ss.str());
 	}
 
 	void UI::setHorizontalVelocity(float horizontalVelocity)
 	{
 		std::stringstream ss;
-		ss << "Horizontal speed: " << std::fixed << std::setprecision(1) << horizontalVelocity;
+		ss << "Horizontal speed: " << std::fixed << std::setprecision(1) << horizontalVelocity
+		<< "m/s (" << horizontalVelocity / 1000.f * 3600.f << "km/h) ("
+		<< horizontalVelocity / 340.f << "Mach)"; 
 		mHorizontalVelocity.setString(ss.str());
 	}
 
@@ -69,7 +78,22 @@ namespace Llan
 
 	}
 
-
+	void UI::setSafetyLanding(bool isSafetyLandingVelocity)
+	{
+		std::stringstream ss;
+		ss << "Safety landing: ";
+		if (isSafetyLandingVelocity)
+		{
+			ss << "SAFETY LANDING";
+			mSafetyLanding.setFillColor(sf::Color::Green);
+		}
+		else
+		{
+			ss << "DANGER!";
+			mSafetyLanding.setFillColor(sf::Color::Red);
+		}
+		mSafetyLanding.setString(ss.str());
+	}
 
 
 	const sf::Text& UI::getFlightAltitude() const
@@ -87,5 +111,10 @@ namespace Llan
 	const sf::Image& UI::getThrustLevel() const
 	{
 		return mThrustLevel;
+	}
+
+	const sf::Text& UI::getSafetyLanding() const
+	{
+		return mSafetyLanding;
 	}
 }

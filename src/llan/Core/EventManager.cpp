@@ -10,6 +10,7 @@
  */
 
 #include "llan/Core/EventManager.hpp"
+#include "SFML/Window/Keyboard.hpp"
 
 namespace Llan
 {
@@ -19,6 +20,7 @@ namespace Llan
     mKeyMap[sf::Keyboard::A] = false;
     mKeyMap[sf::Keyboard::S] = false;
     mKeyMap[sf::Keyboard::D] = false;
+    mKeyMap[sf::Keyboard::L] = false;
   }
 
   EventManager::~EventManager()
@@ -34,6 +36,8 @@ namespace Llan
       }
       if (mEvent.type == sf::Event::KeyPressed)
       {
+        if (mEvent.key.code == sf::Keyboard::Escape)
+          window.close();
         mKeyMap[mEvent.key.code] = true;
       }
       else if (mEvent.type == sf::Event::KeyReleased)

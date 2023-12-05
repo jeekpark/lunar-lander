@@ -12,15 +12,12 @@
 
 #pragma once
 
-#include "SFML/Graphics/Rect.hpp"
-#include "SFML/Graphics/RenderWindow.hpp"
-#include "SFML/Graphics/Sprite.hpp"
-#include "SFML/Graphics/Texture.hpp"
-#include "SFML/System/Clock.hpp"
+
+#include "llan/Core/Terrain.hpp"
 #include "llan/Core/Starship.hpp"
 #include "llan/common.hpp"
 
-#include "llan/Core/Terrain.hpp"
+
 
 namespace Llan
 {

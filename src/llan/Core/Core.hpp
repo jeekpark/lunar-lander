@@ -16,8 +16,8 @@
 #include "llan/Core/EventManager.hpp"
 #include "llan/Core/Starship.hpp"
 #include "llan/Core/Terrain.hpp"
-#include "llan/Core/Render.hpp"
-#include "llan/UI/UI.hpp"
+#include "llan/Render/Render.hpp"
+#include "llan/Render/UI/UI.hpp"
 
 namespace Llan
 {

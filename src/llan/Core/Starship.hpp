@@ -13,8 +13,6 @@
 
 #include "llan/common.hpp"
 
-#include "llan/Sound/Sound.hpp"
-
 namespace Llan
 {
   class Starship
@@ -29,6 +27,8 @@ namespace Llan
     Vec2 getDirection() const;
     Vec2 getVelocity() const;
     int getThrustLevel() const;
+    bool getIsThrusting() const;
+    bool getIsSafetyLandingVelocty() const;
   private:
     const float m_cLunarAccelerationByTimeStep;
     const float m_cThrustAccelerationByTimeStep;
@@ -37,8 +37,9 @@ namespace Llan
     Vec2 mVelocity;
     Vec2 mDirection;
     int mThrustLevel;
-    
-    Sound mThrustSound;
+    bool mIsThrusting;
+    bool mIsSafetyLandingVelocity;
+
 
   };
 }

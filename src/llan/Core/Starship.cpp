@@ -11,19 +11,21 @@
 
 #include "llan/Core/Starship.hpp"
 #include "llan/Helper/Vec2.hpp"
+#include "llan/common.hpp"
 
 namespace Llan
 {
   Starship::Starship()
   : m_cLunarAccelerationByTimeStep(LUNAR_GRAVITY_ACCELERATION / FRAME_PER_SECOND)
-  , m_cThrustAccelerationByTimeStep(LUNAL_MODULE_THRUST_ACCELERATION / FRAME_PER_SECOND)
+  , m_cThrustAccelerationByTimeStep(LUNAR_MODULE_THRUST_ACCELERATION / FRAME_PER_SECOND)
   , m_cGravityDirection(Vec2(0.f, 1.f))
-  , mThrustSound(THRUST_SOUND_PATH)
   {
     mPosition = Vec2(2000.f, 950.f);
     mDirection = Vec2(1.f, 0.f);
-    mVelocity = Vec2(400.f, 0.f);
+    mVelocity = Vec2(50.f, 0.f);
     mThrustLevel = 0;
+    mIsThrusting = false;
+    mIsSafetyLandingVelocity = false;
   }
 
   Starship::~Starship()
@@ -51,7 +53,7 @@ namespace Llan
       mDirection = mDirection.rotate(-0.05f);
     if (isCenterThrust)
     {
-      if (mVelocity.length() < 10.f)
+      if (mVelocity.length() < 20.f)
         mVelocity = mVelocity + mDirection * m_cThrustAccelerationByTimeStep / 10;
       else
         mVelocity = mVelocity + mDirection * m_cThrustAccelerationByTimeStep;
@@ -59,7 +61,16 @@ namespace Llan
     Vec2 deltaDistance = mVelocity * TIME_STEP_S;
     mPosition = mPosition + deltaDistance;
 
-    mThrustSound.play(isCenterThrust);
+    mIsThrusting = isCenterThrust;
+
+    if (std::fabs(mVelocity.getX()) < .5f && std::fabs(mVelocity.getY()) < LUNAR_MODULE_LANDING_SPEED_LIMIT)
+    {
+      mIsSafetyLandingVelocity = true;
+    }
+    else
+    {
+      mIsSafetyLandingVelocity = false;
+    }
   }
 
   Vec2 Starship::getPosition() const
@@ -80,5 +91,15 @@ namespace Llan
   int Starship::getThrustLevel() const
   {
     return mThrustLevel;
+  }
+
+  bool Starship::getIsThrusting() const
+  {
+    return mIsThrusting;
+  }
+
+  bool Starship::getIsSafetyLandingVelocty() const
+  {
+    return mIsSafetyLandingVelocity;
   }
 }

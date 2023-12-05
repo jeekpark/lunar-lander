@@ -12,6 +12,7 @@
 #include "llan/Core/Core.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/Graphics/Texture.hpp"
+#include "SFML/Window/Keyboard.hpp"
 
 namespace Llan
 {
@@ -50,10 +51,17 @@ namespace Llan
         mEventManager.isKeyPressed(sf::Keyboard::A)
       );
 
+      if (mEventManager.isKeyPressed(sf::Keyboard::L))
+      {
+        mRender.setRenderTerrainHeight(40);
+      }
+      else
+      {
+        mRender.setRenderTerrainHeight(100);
+      }
       
 
       mWindow.draw(b);
-      mRender.setRenderTerrainHeight(100);
       mRender.setRenderTerrainPosition(mStarship.getPosition().getX(), mStarship.getPosition().getY());
       mRender.renderTerrain(mTerrain, mWindow);
       mRender.renderStarship(mStarship, mWindow);
@@ -62,9 +70,11 @@ namespace Llan
       mUI.setFlightAltitude(1001.5f - mStarship.getPosition().getY());
       mUI.setHorizontalVelocity(mStarship.getVelocity().getX());
       mUI.setVerticalVelocity(mStarship.getVelocity().getY());
+      mUI.setSafetyLanding(mStarship.getIsSafetyLandingVelocty());
       mWindow.draw(mUI.getFlightAltitude());
       mWindow.draw(mUI.getHorizontalVelocity());
       mWindow.draw(mUI.getVerticalVelocity());
+      mWindow.draw(mUI.getSafetyLanding());
       
 
 

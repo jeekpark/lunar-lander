@@ -9,8 +9,7 @@ LDFLAGS     = -L./lib/sfml/2.6.1/lib -lsfml-window -lsfml-graphics -lsfml-audio 
 SRC_DIR     = ./src
 LLAN_DIR		=	$(SRC_DIR)/llan
 CORE_DIR		=	$(LLAN_DIR)/Core
-UI_DIR			=	$(LLAN_DIR)/UI
-SOUND_DIR		=	$(LLAN_DIR)/Sound
+RENDER_DIR	=	$(LLAN_DIR)/Render
 
 
 OBJ_DIR			=	./obj
@@ -22,9 +21,9 @@ SRC_FILES		=	$(SRC_DIR)/main.cpp           				\
 							$(CORE_DIR)/EventManager.cpp					\
 							$(CORE_DIR)/Starship.cpp							\
 							$(CORE_DIR)/Terrain.cpp								\
-							$(CORE_DIR)/Render.cpp								\
-							$(UI_DIR)/UI.cpp											\
-							$(SOUND_DIR)/Sound.cpp
+							$(RENDER_DIR)/Render.cpp							\
+							$(RENDER_DIR)/UI/UI.cpp								\
+							$(RENDER_DIR)/Sound/Sound.cpp
 
 
 OBJ_FILES   = $(SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

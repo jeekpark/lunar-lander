@@ -24,11 +24,13 @@ namespace Llan
 		void setVerticalVelocity(float verticalVelocity);
 		void setHorizontalVelocity(float horizontalVelocity);
 		void setThrustLevel(float thrustLevel);
+		void setSafetyLanding(bool isSafetyLandingVelocity);
 
 		const sf::Text& getFlightAltitude() const;
 		const sf::Text& getVerticalVelocity() const;
 		const sf::Text& getHorizontalVelocity() const;
 		const sf::Image& getThrustLevel() const;
+		const sf::Text& getSafetyLanding() const;
 	private:
 		sf::Font mMainFont;
 		sf::Text mFlightAltitude;
@@ -36,5 +38,6 @@ namespace Llan
 		sf::Text mHorizontalVelocity;
 		//sf::Text mTotalVelocity;
 		sf::Image mThrustLevel;
+		sf::Text mSafetyLanding;
 	};
 }

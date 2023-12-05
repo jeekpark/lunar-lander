@@ -68,4 +68,11 @@
  * @brief Thrust accelation of Appolo-13 lunar module.
  * @note F = MA, A = F/M, (force) / (weight)
  */
-#define LUNAL_MODULE_THRUST_ACCELERATION   LUNAR_MOUDLE_THRUST_FORCE / LUNAR_MODULE_WEIGHT_KG
+#define LUNAR_MODULE_THRUST_ACCELERATION		(LUNAR_MOUDLE_THRUST_FORCE / LUNAR_MODULE_WEIGHT_KG)
+
+
+/**
+ * @brief Limit landing speed(vertical) of Appolo-13 lunar module;
+ * @note 1.07m/s
+ */
+#define LUNAR_MODULE_LANDING_SPEED_LIMIT		1.07f

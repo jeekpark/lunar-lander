@@ -9,7 +9,7 @@
  * 
  */
 
-#include "llan/Sound/Sound.hpp"
+#include "llan/Render/Sound/Sound.hpp"
 
 namespace Llan
 {
